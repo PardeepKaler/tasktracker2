@@ -1,0 +1,53 @@
+<h2>Show Task</h2>
+
+<ul>
+
+  <li>
+      <strong>User:</strong>
+      <%= if @task.user do @task.user.name else "User Deleted" end %>
+    </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+  <li>
+    <strong>Assigned:</strong>
+    <%= if Tasktracker.Accounts.get_user(@task.assigned) do Tasktracker.Accounts.get_user(@task.assigned).email else "Add new Assignee" end %>
+  </li>
+
+  <li>
+    <strong>Timeblocks:</strong>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>Stop</th>
+        </tr>
+      </thead>
+      <tbody>
+    <%= for time <- Tasktracker.TaskTrack.get_blocks(@task) do %>
+        <tr>
+          <td><%= time.start_time %></td>
+          <td><%= time.end_time %></td>
+        </tr>
+    <% end %>
+      </tbody>
+    </table>
+  </li>
+
+  <li>
+    <strong>Completed:</strong>
+    <%= if(@task.completed) do "Completed" else "Not Completed" end %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
+<span><%= link "Back", to: task_path(@conn, :index) %></span>

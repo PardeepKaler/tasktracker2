@@ -1,0 +1,14 @@
+<%= if @current_user do %>
+<h2> Time Blocks </h2>
+<br>
+<%= form_tag("/taskid", method: :post) do %>
+  <div class="form-group">
+    <input type="hidden" name="task_id" value= @task.id >
+  </div>
+  <!-- passwords come later -->
+  <br>
+  <div class="form-group">
+    <button class="btn btn-primary">Add TimeBlock</button>
+    <% end %>
+<span><%= link "Back",  class: "btn btn-primary", to: task_path( @conn, :index) %></span>
+<% end %>

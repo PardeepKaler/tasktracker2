@@ -1,0 +1,75 @@
+<%= if @current_user do %>
+<h2>Listing Tasks</h2>
+<script>
+ window.time_block_path = "<%= time_block_path(@conn, :index) %>";
+</script>
+
+<br>
+<%= if(length(Tasktracker.Accounts.get_underlings(@current_user.email)) > 0) do %>
+<span><%= button "New Task", method: "get", class: "btn btn-primary", to: task_path(@conn, :new) %></span>
+<% end %>
+<span><%= button "Edit Account", method: "get", class: "btn btn-primary", to: user_path(@conn, :edit, @current_user) %></span>
+<br><br>
+<table class="table">
+  <colgroup>
+    <col class="w">
+    <col class="w">
+    <col class="w2">
+    <col class="w">
+    <col class="w">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for task <- Tasktracker.TaskTrack.get_tasks(@current_user) do %>
+    <tr>
+      <td>
+      <button class="time-button btn btn-secondary"
+              data-task-id="<%= task.id %>"
+              data-time= "" >
+        Start Working
+      </button>
+      <td><span><%= link "Edit Block", to: time_block_path(@conn, :editblock, task), class: "btn btn-default btn-xs" %></span></td>
+    </td>
+      <td><%= task.title %></td>
+      <td><%= task.description %></td>
+      <td><%= if(task.completed) do "Completed" else "Not Completed" end %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<br><br>
+<h2>Manager :</h2>
+<ul>
+<li><%= if @current_user.manager== nil do "No Manager" else @current_user.manager end %></li>
+</ul>
+
+
+<h2>Underlings: </h2>
+<%= if(length(Tasktracker.Accounts.get_underlings(@current_user.email)) > 0) do %>
+<ul>
+<%= for user <- Tasktracker.Accounts.get_underlings(@current_user.email) do %>
+  <li><%= user.email %></li>
+  <%= end %>
+  <% else %>
+  <li><%= "No Underlings" %></li>
+  <%= end %>
+  <ul>
+
+<% else %>
+<br><br><br>
+<h1><%= link "Login First", to: page_path(@conn, :index) %></h1>
+<% end %>
