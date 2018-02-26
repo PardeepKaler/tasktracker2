@@ -8,13 +8,13 @@ use Mix.Config
 # file or create a script for recreating it, since it's
 # kept out of version control and might be hard to recover
 # or recreate for your teammates (or yourself later on).
-config :tasktracker, TasktrackerWeb.Endpoint,
+config :tasktracker2, TasktrackerWeb.Endpoint,
   secret_key_base: "9FeaDDzvxwKUYLvyBHaDX0WcovCWydyNA+Q/XN9y8tioPzjl1xjG98t+NbUYnqYp"
 
 # Configure your database
-config :tasktracker, Tasktracker.Repo,
+config :tasktracker2, Tasktracker.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "tasktracker",
+  username: "tasktracker2",
   password: "$jatt$jatt%",
-  database: "tasktracker_prod",
+  database: "tasktracker2_prod",
   pool_size: 15

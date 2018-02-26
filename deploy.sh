@@ -34,7 +34,7 @@ fi
 
 mkdir -p ~/www/tasktracker2
 REL_TAR=~/src/tasktracker2/_build/prod/rel/tasktracker2/releases/0.0.1/tasktracker2.tar.gz
-(cd ~/www/tasktracker && tar xzvf $REL_TAR)
+(cd ~/www/tasktracker2 && tar xzvf $REL_TAR)
 
 crontab - <<CRONTAB
 @reboot bash /home/tasktracker2/src/tasktracker2/start.sh
