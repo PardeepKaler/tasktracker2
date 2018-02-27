@@ -39,7 +39,7 @@ defmodule TasktrackerWeb.Router do
     resources "/users", UserController
     resources "/posts", PostController
     resources "/tasks", TaskController
-    get "tasks/report/new", TaskController, :report
+    get "/tasks/report/new", TaskController, :report
     post "/session", SessionController, :create
     post "/taskid", TaskidController, :create
     delete "/session", SessionController, :delete
