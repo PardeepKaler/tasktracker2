@@ -50,7 +50,8 @@ function set_button(task_id, value) {
 
 
 function start(task_id) {
-  let date= new Date();
+  let time= new Date();
+  let date= new Date(time.getTime()+(-300)*60*1000);
   console.log(date);
   let text = JSON.stringify({
       time_block: {
@@ -70,7 +71,8 @@ function start(task_id) {
 }
 
 function stop(task_id, time_id) {
-  let date= new Date();
+  let time= new Date();
+  let date= new Date(time.getTime()+(-300)*60*1000);
   let text = JSON.stringify({
       time_block: {
           end_time: date

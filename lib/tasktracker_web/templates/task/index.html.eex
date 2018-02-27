@@ -8,6 +8,10 @@
 <%= if(length(Tasktracker.Accounts.get_underlings(@current_user.email)) > 0) do %>
 <span><%= button "New Task", method: "get", class: "btn btn-primary", to: task_path(@conn, :new) %></span>
 <% end %>
+<span><%= button "Task Report", method: "get", class: "btn btn-primary", to: "/tasks/report/new" %></span>
+<%= if(@current_user.admin) do %>
+ <span><%= button "Assign Managers To Users", method: "get", class: "btn btn-primary", to: user_path(@conn, :index) %></span>
+<% end %>
 <span><%= button "Edit Account", method: "get", class: "btn btn-primary", to: user_path(@conn, :edit, @current_user) %></span>
 <br><br>
 <table class="table">
@@ -36,7 +40,7 @@
               data-time= "" >
         Start Working
       </button>
-      <td><span><%= link "Edit Block", to: time_block_path(@conn, :editblock, task), class: "btn btn-default btn-xs" %></span></td>
+      <td><span><%= link "Edit TimeBlock", to: time_block_path(@conn, :editblock, task), class: "btn btn-default btn-xs" %></span></td>
     </td>
       <td><%= task.title %></td>
       <td><%= task.description %></td>

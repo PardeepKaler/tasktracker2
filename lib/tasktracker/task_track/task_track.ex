@@ -27,6 +27,11 @@ defmodule Tasktracker.TaskTrack do
       where: f.assigned == ^user.id)
   end
 
+  def get_tasks_by_name(user) do
+    Repo.all(from f in Task,
+      where: f.user_id == ^user.id)
+  end
+
   def get_task(id), do: Repo.get(Task, id)
 
   @doc """

@@ -6,22 +6,13 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, type: "email", placeholder: "user@example.com" ,class: "form-control" %>
+    <%= hidden_input f, :email, value: @user.email,  class: "form-control" %>
     <%= error_tag f, :email %>
   </div>
 
-
   <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
+    <%= hidden_input f, :name, value: @user.name,  class: "form-control" %>
     <%= error_tag f, :name %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :admin, class: "control-label" %>
-    <%= checkbox f, :admin, class: "checkbox" %>
-    <%= error_tag f, :admin %>
   </div>
 
   <div class="form-group">

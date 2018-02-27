@@ -14,6 +14,11 @@ defmodule TasktrackerWeb.TaskController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  def report(conn, _params) do
+    tasks = TaskTrack.list_tasks()
+    render(conn, "report.html")
+  end
+
   def create(conn, %{"task" => task_params}) do
     case TaskTrack.create_task(task_params) do
       {:ok, task} ->

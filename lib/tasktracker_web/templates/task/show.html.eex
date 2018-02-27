@@ -19,7 +19,7 @@
 
   <li>
     <strong>Assigned:</strong>
-    <%= if Tasktracker.Accounts.get_user(@task.assigned) do Tasktracker.Accounts.get_user(@task.assigned).email else "Add new Assignee" end %>
+    <%= if ( @task.assigned && Tasktracker.Accounts.get_user(@task.assigned)) do Tasktracker.Accounts.get_user(@task.assigned).email else "Add new Assignee" end %>
   </li>
 
   <li>
@@ -48,6 +48,8 @@
   </li>
 
 </ul>
-
-<span><%= link "Edit", to: task_path(@conn, :edit, @task) %></span>
+<%= if(@task.assigned == @current_user.id) do %>
 <span><%= link "Back", to: task_path(@conn, :index) %></span>
+<% else %>
+<span><%= link "Back", to: "/tasks/report/new" %></span>
+<% end %>

@@ -1,11 +1,14 @@
 <h2>Edit User</h2>
 
-<%= if(@current_user && @current_user.admin) do
-   render "form1.html", Map.put(assigns, :action, user_path(@conn, :update, @user))
+<%= if(@current_user && @current_user.admin && @current_user.id != @user.id) do
+ render "form1.html", Map.put(assigns, :action, user_path(@conn, :update, @user))
  else
    render "form.html", Map.put(assigns, :action, user_path(@conn, :update, @user))
  end
    %>
 
-
-<span><%= link "Back", to: task_path(@conn, :index) %></span>
+<%= if( @current_user.id != @user.id) do %>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<% else %>
+ <span><%= link "Back", to: task_path(@conn, :index) %></span>
+ <% end %>

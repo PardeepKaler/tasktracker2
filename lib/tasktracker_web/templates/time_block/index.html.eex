@@ -9,8 +9,8 @@
   <div class="form-group">
     <button class="btn btn-primary">New Block</button>
     <% end %>
-
-    <strong>Timeblocks:</strong>
+<br><br>
+    
     <table class="table">
       <thead>
         <tr>

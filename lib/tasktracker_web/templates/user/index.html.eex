@@ -14,7 +14,6 @@
   </thead>
   <tbody>
 <%= for user <- @users do %>
-<%= if user.admin==false do %>
     <tr>
       <td><%= user.email %></td>
       <td><%= user.name %></td>
@@ -26,11 +25,18 @@
         <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
-    <% end %>
 <% end %>
   </tbody>
 </table>
 <br><br>
 <span><%= link "Back", to: task_path(@conn, :index) %></span>
+<% else %>
+<br><br><br>
+<h1>You are Not Admin</h1>
+<br><br>
+<h1><%= link "Login", to: page_path(@conn, :index) %></h1>
 <% end %>
+<% else %>
+<br><br><br>
+<h1><%= link "Login First", to: page_path(@conn, :index) %></h1>
 <% end %>

@@ -78,7 +78,7 @@ defmodule TasktrackerWeb.TimeBlockController do
       {:ok, time} ->
         conn
         |> put_flash(:info, "Time Block updated successfully.")
-        |> redirect(to: task_path(conn, :index))
+        |> redirect(to: time_block_path(conn, :editblock, time.task_id))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", time: time, changeset: changeset)
     end
@@ -86,11 +86,12 @@ defmodule TasktrackerWeb.TimeBlockController do
 
   def delete1(conn, %{"id" => id}) do
     time = TaskTrack.get_time_block!(id)
+    task= time.task_id
     {:ok, _time} = TaskTrack.delete_time_block(time)
 
     conn
     |> put_flash(:info, "Time Block deleted successfully.")
-    |> redirect(to: task_path(conn, :index))
+    |> redirect(to: time_block_path(conn, :editblock, task))
   end
 
 

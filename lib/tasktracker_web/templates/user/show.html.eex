@@ -12,7 +12,12 @@
     <%= @user.name %>
   </li>
 
+  <li>
+    <strong>Manager:</strong>
+  <%= if @user.manager== nil do "No Manager" else @user.manager end %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: task_path(@conn, :index) %></span>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>

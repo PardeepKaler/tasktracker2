@@ -18,5 +18,6 @@ defmodule Tasktracker.TaskTrack.TimeBlock do
     |> cast(attrs, [:start_time, :end_time, :task_id])
     |> validate_required([:start_time, :end_time, :task_id])
     |> foreign_key_constraint(:task_id)
+    |> check_constraint(:end_time, [message: "should be bigger than start_time", name: "end_time_bigger" ])
   end
 end
