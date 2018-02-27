@@ -3,9 +3,9 @@
 <ul>
 
   <li>
-      <strong>User:</strong>
-      <%= if @task.user do @task.user.name else "User Deleted" end %>
-    </li>
+    <strong>User:</strong>
+    <%= if @task.user do @task.user.name else "User Deleted" end %>
+  </li>
 
   <li>
     <strong>Title:</strong>
@@ -32,12 +32,12 @@
         </tr>
       </thead>
       <tbody>
-    <%= for time <- Tasktracker.TaskTrack.get_blocks(@task) do %>
+        <%= for time <- Tasktracker.TaskTrack.get_blocks(@task) do %>
         <tr>
           <td><%= time.start_time %></td>
           <td><%= time.end_time %></td>
         </tr>
-    <% end %>
+        <% end %>
       </tbody>
     </table>
   </li>

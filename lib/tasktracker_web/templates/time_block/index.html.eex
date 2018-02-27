@@ -2,36 +2,36 @@
 <h2> Time Blocks <%= @task %> </h2>
 <br>
 <%= form_for @conn, (taskid_path(@conn, :create)), fn f -> %>
-  <div class="form-group">
- <%= hidden_input f, :task_id, value: @task,  class: "form-control" %>
-  </div>
-  <!-- passwords come later -->
-  <div class="form-group">
-    <button class="btn btn-primary">New Block</button>
-    <% end %>
-<br><br>
-    
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Start</th>
-          <th>Stop</th>
-          <th>-</th>
-        </tr>
-      </thead>
-      <tbody>
-    <%= for time <- Tasktracker.TaskTrack.get_blocks_by_id(@task) do %>
-        <tr>
-          <td><%= time.start_time %></td>
-          <td><%= time.end_time %></td>
-          <td class="text-right">
-            <span><%= link "Edit", to: time_block_path(@conn, :edit, time), class: "btn btn-default btn-xs" %></span>
-            <span><%= link "Delete", to: time_block_path(@conn, :delete1, time), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-          </td>
-        </tr>
-    <% end %>
-      </tbody>
-    </table>
+<div class="form-group">
+  <%= hidden_input f, :task_id, value: @task,  class: "form-control" %>
+</div>
+<!-- passwords come later -->
+<div class="form-group">
+  <button class="btn btn-primary">New Block</button>
+  <% end %>
+  <br><br>
 
-<span><%= link "Back",  class: "btn btn-primary", to: task_path( @conn, :index) %></span>
-<% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>Stop</th>
+        <th>-</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for time <- Tasktracker.TaskTrack.get_blocks_by_id(@task) do %>
+      <tr>
+        <td><%= time.start_time %></td>
+        <td><%= time.end_time %></td>
+        <td class="text-right">
+          <span><%= link "Edit", to: time_block_path(@conn, :edit, time), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete", to: time_block_path(@conn, :delete1, time), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <span><%= link "Back",  class: "btn btn-primary", to: task_path( @conn, :index) %></span>
+  <% end %>
