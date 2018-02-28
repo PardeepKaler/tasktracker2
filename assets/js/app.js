@@ -28,7 +28,6 @@ function update_buttons() {
     let time = $(bb).data('time');
     if (time != "") {
       $(bb).text("Stop Working");
-      console.log("stop");
     }
     else {
       $(bb).text("Start Working");
@@ -41,10 +40,8 @@ function set_button(task_id, value) {
   //  console.log($(bb).data('task-id'));
     if (task_id == $(bb).data('task-id')) {
       $(bb).data('time', value);
-      console.log("Set");
     }
   });
-  console.log(value);
   update_buttons();
 }
 
@@ -52,7 +49,6 @@ function set_button(task_id, value) {
 function start(task_id) {
   let time= new Date();
   let date= new Date(time.getTime()+(-300)*60*1000);
-  console.log(date);
   let text = JSON.stringify({
       time_block: {
         task_id: task_id,
